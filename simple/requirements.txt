@@ -5,3 +5,4 @@ requests>=2.31.0
 duckduckgo-search>=6.1.0
 rich>=13.7.0
 Wikipedia-API>=0.6.0
+gradio>=4.0.0

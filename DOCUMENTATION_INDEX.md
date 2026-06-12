@@ -176,6 +176,47 @@ This project has **comprehensive documentation** (136,000+ words across 6 docume
 
 ---
 
+### 7. 🎨 [DASHBOARD_GUIDE.md](./DASHBOARD_GUIDE.md) - **Visual Interface Guide**
+- **Size:** ~35 KB (~14,000 words)
+- **Read Time:** 30-40 minutes
+- **Purpose:** Learn how to visualize agent execution with a beautiful web dashboard
+- **Best For:** Anyone who wants to see the agent's thinking process visually
+
+**What's Inside:**
+- **Quick Start:**
+  - How to launch the dashboard
+  - Interface overview
+  - Example queries to try
+
+- **Understanding Output:**
+  - What each color-coded section means
+  - How to read THINK/ACT/OBSERVE/FINISH phases
+  - Token usage and cost tracking
+
+- **Technical Details:**
+  - How the dashboard works
+  - Architecture explanation
+  - Dashboard vs terminal comparison
+
+- **Customization:**
+  - Change colors and styling
+  - Add new features
+  - Enable public sharing
+  - Authentication setup
+
+- **Advanced Features:**
+  - Save conversation history
+  - Compare multiple runs
+  - Export capabilities
+
+- **Troubleshooting:**
+  - Common issues and fixes
+  - Performance optimization
+
+**Read this if:** You want to showcase your agent with a beautiful web interface
+
+---
+
 ## 🎓 Recommended Reading Order by Goal
 
 ### Goal: "I just want it running"
@@ -232,7 +273,8 @@ This project has **comprehensive documentation** (136,000+ words across 6 docume
 | CODE_WALKTHROUGH.md | 38 KB | ~15,000 | 90 min | 3 |
 | ARCHITECTURE.md | 45 KB | ~18,000 | 45 min | 12 |
 | README.md | 10 KB | ~4,000 | 10 min | 1 |
-| **TOTAL** | **136 KB** | **~54,000** | **~4 hours** | **20** |
+| DASHBOARD_GUIDE.md | 35 KB | ~14,000 | 40 min | 5 |
+| **TOTAL** | **171 KB** | **~68,000** | **~5 hours** | **25** |
 
 ---
 
@@ -274,9 +316,13 @@ This project has **comprehensive documentation** (136,000+ words across 6 docume
 → QUICK_START.md → "Try These First"
 → BEGINNERS_GUIDE.md → "Practice Tasks"
 
+### "How do I visualize the agent's thinking?"
+→ DASHBOARD_GUIDE.md → Complete dashboard setup and usage
+
 ### "How to troubleshoot?"
 → BEGINNERS_GUIDE.md → "Troubleshooting"
 → QUICK_START.md → "Common Issues"
+→ DASHBOARD_GUIDE.md → "Troubleshooting" (for dashboard issues)
 
 ---
 

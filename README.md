@@ -76,7 +76,30 @@ copy .env.example .env       # Windows
 
 # 5. Run
 python main.py
+
+# 6. (Optional) Launch the web dashboard (simple level only)
+python dashboard.py
+# Then open http://localhost:7860 in your browser
 ```
+
+---
+
+## 🎨 Visual Dashboard
+
+The `simple/` level includes a beautiful web dashboard to visualize the agent's thinking process!
+
+```bash
+cd simple
+python dashboard.py
+```
+
+Then open **http://localhost:7860** in your browser to see:
+- Color-coded THINK/ACT/OBSERVE/FINISH phases
+- Real-time step-by-step execution
+- Token usage and cost tracking
+- Beautiful, shareable interface
+
+📖 See [DASHBOARD_GUIDE.md](./DASHBOARD_GUIDE.md) for complete documentation.
 
 ---
 
@@ -253,5 +276,6 @@ python eval_harness.py    # run the full benchmark
 | `MAX_RETRIES` | `2` | Extra attempts on tool error (Intermediate+). |
 | `STREAM_OUTPUT` | `true` | Live token streaming (Intermediate+). |
 | `PLAN_FIRST` | `true` | Force a plan before acting (Advanced). |
-#   A g e n t i c A I E n g i n e e r i n g  
+#   A g e n t i c A I E n g i n e e r i n g 
+ 
  
