@@ -1,10 +1,13 @@
 """
-Gradio Dashboard for ReAct Agent
-==================================
-Beautiful web interface to showcase the agent's thinking process in real-time.
+Gradio Dashboard for ReAct Agent - WITH PUBLIC SHARING
+========================================================
+This version creates a public URL that you can access from anywhere.
 
-Run: python dashboard.py
-Then open: http://localhost:7860
+Run: python dashboard_share.py
+You'll get a public URL like: https://abc123.gradio.live
+
+⚠️ WARNING: Anyone with the URL can use your API key!
+Only use this for demos or testing.
 """
 import os
 import gradio as gr
@@ -267,9 +270,11 @@ def process_query(task, history):
 # Build Gradio Interface
 with gr.Blocks(title="ReAct Agent Dashboard", theme=gr.themes.Soft()) as demo:
     gr.Markdown("""
-    # 🤖 ReAct Agent Dashboard
+    # 🤖 ReAct Agent Dashboard (Public Share Mode)
     
     Watch your AI agent think, act, and solve problems step-by-step in real-time.
+    
+    ⚠️ **PUBLIC URL**: This creates a shareable link. Anyone with the link can use your API!
     
     **Try these examples:**
     - "What is 25 * 47 + 183?"
@@ -325,29 +330,21 @@ with gr.Blocks(title="ReAct Agent Dashboard", theme=gr.themes.Soft()) as demo:
     - **👁️ OBSERVE**: Results returned from tools
     - **✅ FINAL ANSWER**: The agent's complete response
     
-    ### 💡 Tips:
-    
-    - Give clear, specific tasks for best results
-    - Watch how the agent breaks down complex problems
-    - See token usage and cost for each step
-    - The agent can use multiple tools in sequence
-    
     **Built with:** Anthropic Claude API · Gradio · Python
     """)
 
 
 if __name__ == "__main__":
     print("\n" + "="*60)
-    print("🚀 Starting ReAct Agent Dashboard...")
+    print("🚀 Starting ReAct Agent Dashboard (PUBLIC SHARE MODE)...")
     print("="*60)
-    print("\n📱 Open your browser and go to: http://localhost:7860")
+    print("\n🌍 Creating a public shareable link...")
     print("🔑 Make sure ANTHROPIC_API_KEY is set in your .env file")
-    print("\n" + "="*60 + "\n")
+    print("\n⚠️  WARNING: Anyone with the link can use your API!")
+    print("="*60 + "\n")
     
     demo.launch(
-        server_name="127.0.0.1",  # Use localhost instead of 0.0.0.0 for Windows
-        server_port=7860,
-        share=False,  # Set to True to create a public link
+        share=True,  # Creates a public gradio.live URL
         show_error=True,
         inbrowser=True  # Automatically open browser
     )
