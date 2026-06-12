@@ -1,0 +1,30 @@
+WORLD'S 3 MOST POPULOUS COUNTRIES - POPULATION ANALYSIS
+========================================================
+World Population Reference: 8.1 billion (8,100,000,000)
+Date: 2024-2025 estimates
+
+RANKING BY POPULATION:
+
+1. INDIA
+   Population: 1,428,000,000 (1.428 billion)
+   Percentage of World Population: 17.63%
+   Status: Most populous country since 2023
+
+2. CHINA  
+   Population: 1,404,000,000 (1.404 billion)
+   Percentage of World Population: 17.33%
+   Status: Second most populous, experiencing population decline
+
+3. UNITED STATES
+   Population: 341,784,857 (341.8 million)
+   Percentage of World Population: 4.22%
+   Status: Third most populous country
+
+SUMMARY:
+- India and China together represent 34.96% of world population
+- All three countries combined represent 39.18% of world population
+- India surpassed China as the most populous country in 2023
+- China's population is declining while India's continues to grow slowly
+- The US has significantly fewer people than the Asian giants but remains the most populous Western nation
+
+Data Sources: Wikipedia Demographics pages, UN estimates, US Census Bureau
