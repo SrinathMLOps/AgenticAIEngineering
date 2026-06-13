@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic AI Function Calling Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 30px 40px;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header .subtitle {
+            font-size: 16px;
+            color: #718096;
+            font-weight: 500;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-left: 4px solid #667eea;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .metric-label {
+            font-size: 13px;
+            color: #718096;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .metric-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #1a202c;
+            line-height: 1;
+        }
+
+        .metric-subtext {
+            font-size: 13px;
+            color: #a0aec0;
+            margin-top: 6px;
+        }
+
+        .exercise-section {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .exercise-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .exercise-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a202c;
+        }
+
+        .exercise-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .query-box {
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .query-label {
+            font-size: 12px;
+            color: #718096;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .query-text {
+            font-size: 15px;
+            color: #2d3748;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .tool-calls-container {
+            margin-bottom: 20px;
+        }
+
+        .tool-call {
+            background: #ffffff;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 18px;
+            margin-bottom: 12px;
+            transition: border-color 0.2s;
+        }
+
+        .tool-call:hover {
+            border-color: #667eea;
+        }
+
+        .tool-call-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .tool-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: #1a202c;
+            font-family: 'Courier New', monospace;
+        }
+
+        .tool-sequence {
+            background: #edf2f7;
+            color: #4a5568;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .tool-params {
+            background: #f7fafc;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: #2d3748;
+            overflow-x: auto;
+        }
+
+        .tool-result {
+            background: #f0fff4;
+            border-left: 3px solid #48bb78;
+            padding: 12px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: #22543d;
+        }
+
+        .result-label {
+            font-size: 11px;
+            color: #2f855a;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+
+        .agent-response {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 15px;
+            line-height: 1.7;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .response-label {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .response-text {
+            font-weight: 500;
+        }
+
+        .footer {
+            background: rgba(255, 255, 255, 0.98);
+            padding: 24px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-top: 30px;
+        }
+
+        .footer-text {
+            color: #718096;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .tech-badge {
+            background: #edf2f7;
+            color: #4a5568;
+            padding: 6px 14px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .exercise-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1>Agentic AI Function Calling Dashboard</h1>
+            <p class="subtitle">Real-time Multi-Turn Agent Execution Analysis | Gemini Native Function Calling</p>
+        </div>
+
+        <!-- Metrics Overview -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-label">Total Exercises</div>
+                <div class="metric-value">4</div>
+                <div class="metric-subtext">Completed successfully</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Total Tool Calls</div>
+                <div class="metric-value">8</div>
+                <div class="metric-subtext">Across all exercises</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Tools Available</div>
+                <div class="metric-value">3</div>
+                <div class="metric-subtext">Weather, Currency, City Info</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Success Rate</div>
+                <div class="metric-value">100%</div>
+                <div class="metric-subtext">All queries resolved</div>
+            </div>
+        </div>
+
+        <!-- Exercise 1 -->
+        <div class="exercise-section">
+            <div class="exercise-header">
+                <div class="exercise-title">Exercise 1: Single Tool Query</div>
+                <div class="exercise-badge">1 TOOL CALL</div>
+            </div>
+
+            <div class="query-box">
+                <div class="query-label">User Query</div>
+                <div class="query-text">What's the weather like in Tokyo?</div>
+            </div>
+
+            <div class="tool-calls-container">
+                <div class="tool-call">
+                    <div class="tool-call-header">
+                        <div class="tool-name">get_weather()</div>
+                        <div class="tool-sequence">CALL 1</div>
+                    </div>
+                    <div class="tool-params">{'city': 'Tokyo'}</div>
+                    <div class="tool-result">
+                        <div class="result-label">Result</div>
+                        {"city": "Tokyo", "temperature": 28, "unit": "celsius", "condition": "Sunny", "humidity": "55%"}
+                    </div>
+                </div>
+            </div>
+
+            <div class="agent-response">
+                <div class="response-label">Agent Response</div>
+                <div class="response-text">The weather in Tokyo is currently sunny with a temperature of 28°C and 55% humidity.</div>
+            </div>
+        </div>
+
+        <!-- Exercise 2 -->
+        <div class="exercise-section">
+            <div class="exercise-header">
+                <div class="exercise-title">Exercise 2: Comparative Analysis</div>
+                <div class="exercise-badge">2 TOOL CALLS</div>
+            </div>
+
+            <div class="query-box">
+                <div class="query-label">User Query</div>
+                <div class="query-text">Is it warmer in London or Sydney right now?</div>
+            </div>
+
+            <div class="tool-calls-container">
+                <div class="tool-call">
+                    <div class="tool-call-header">
+                        <div class="tool-name">get_weather()</div>
+                        <div class="tool-sequence">CALL 1</div>
+                    </div>
+                    <div class="tool-params">{'city': 'London'}</div>
+                    <div class="tool-result">
+                        <div class="result-label">Result</div>
+                        {"city": "London", "temperature": 14, "unit": "celsius", "condition": "Cloudy", "humidity": "72%"}
+                    </div>
+                </div>
+
+                <div class="tool-call">
+                    <div class="tool-call-header">
+                        <div class="tool-name">get_weather()</div>
+                        <div class="tool-sequence">CALL 2</div>
+                    </div>
+                    <div class="tool-params">{'city': 'Sydney'}</div>
+                    <div class="tool-result">
+                        <div class="result-label">Result</div>
+                        {"city": "Sydney", "temperature": 18, "unit": "celsius", "condition": "Rainy", "humidity": "80%"}
+                    </div>
+                </div>
+            </div>
+
+            <div class="agent-response">
+                <div class="response-label">Agent Response</div>
+                <div class="response-text">It is currently warmer in Sydney (18°C) than in London (14°C).</div>
+            </div>
+        </div>
+
+        <!-- Exercise 3 -->
+        <div class="exercise-section">
+            <div class="exercise-header">
+                <div class="exercise-title">Exercise 3: Multi-Domain Query</div>
+                <div class="exercise-badge">2 TOOL CALLS</div>
+            </div>
+
+            <div class="query-box">
+                <div class="query-label">User Query</div>
+                <div class="query-text">Convert 200 USD to Japanese Yen, and also tell me the weather in Tokyo.</div>
+            </div>
+
+            <div class="tool-calls-container">
+                <div class="tool-call">
+                    <div class="tool-call-header">
+                        <div class="tool-name">convert_currency()</div>
+                        <div class="tool-sequence">CALL 1</div>
+                    </div>
+                    <div class="tool-params">{'from_curr': 'USD', 'amount': 200.0, 'to_curr': 'JPY'}</div>
+                    <div class="tool-result">
+                        <div class="result-label">Result</div>
+                        {"original": "200.0 USD", "converted": "31480.0 JPY", "rate": 157.4}
+                    </div>
+                </div>
+
+                <div class="tool-call">
+                    <div class="tool-call-header">
+                        <div class="tool-name">get_weather()</div>
+                        <div class="tool-sequence">CALL 2</div>
+                    </div>
+                    <div class="tool-params">{'city': 'Tokyo'}</div>
+                    <div class="tool-result">
+                        <div class="result-label">Result</div>
+                        {"city": "Tokyo", "temperature": 28, "unit": "celsius", "condition": "Sunny", "humidity": "55%"}
+                    </div>
+                </div>
+            </div>
+
+            <div class="agent-response">
+                <div class="response-label">Agent Response</div>
+                <div class="response-text">200 USD is currently 31,480 Japanese Yen. The weather in Tokyo is sunny with a temperature of 28°C.</div>
+            </div>
+        </div>
+
+        <!-- Exercise 4 -->
+        <div class="exercise-section">
+            <div class="exercise-header">
+                <div class="exercise-title">Exercise 4: Complex Multi-Tool Chain</div>
+                <div class="exercise-badge">3 TOOL CALLS</div>
+            </div>
+
+            <div class="query-box">
+                <div class="query-label">User Query</div>
+                <div class="query-text">I'm visiting Paris. What's the local language, current weather, and how much is 50 USD in Euros?</div>
+            </div>
+
+            <div class="tool-calls-container">
+                <div class="tool-call">
+                    <div class="tool-call-header">
+                        <div class="tool-name">get_city_info()</div>
+                        <div class="tool-sequence">CALL 1</div>
+                    </div>
+                    <div class="tool-params">{'city': 'Paris'}</div>
+                    <div class="tool-result">
+                        <div class="result-label">Result</div>
+                        {"city": "Paris", "country": "France", "timezone": "GMT+2", "language": "French"}
+                    </div>
+                </div>
+
+                <div class="tool-call">
+                    <div class="tool-call-header">
+                        <div class="tool-name">get_weather()</div>
+                        <div class="tool-sequence">CALL 2</div>
+                    </div>
+                    <div class="tool-params">{'city': 'Paris'}</div>
+                    <div class="tool-result">
+                        <div class="result-label">Result</div>
+                        {"city": "Paris", "temperature": 17, "unit": "celsius", "condition": "Clear", "humidity": "58%"}
+                    </div>
+                </div>
+
+                <div class="tool-call">
+                    <div class="tool-call-header">
+                        <div class="tool-name">convert_currency()</div>
+                        <div class="tool-sequence">CALL 3</div>
+                    </div>
+                    <div class="tool-params">{'from_curr': 'USD', 'amount': 50.0, 'to_curr': 'EUR'}</div>
+                    <div class="tool-result">
+                        <div class="result-label">Result</div>
+                        {"original": "50.0 USD", "converted": "46.0 EUR", "rate": 0.92}
+                    </div>
+                </div>
+            </div>
+
+            <div class="agent-response">
+                <div class="response-label">Agent Response</div>
+                <div class="response-text">For your trip to Paris, France, here is the information you requested:<br><br>
+                <strong>• Local Language:</strong> French<br>
+                <strong>• Current Weather:</strong> 17°C, Clear<br>
+                <strong>• Currency Conversion:</strong> 50 USD is approximately 46.00 EUR (at an exchange rate of 0.92).<br><br>
+                Enjoy your visit to Paris!</div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-text">Powered by Google Gemini API | Multi-Turn Agentic AI System</div>
+            <div class="tech-stack">
+                <span class="tech-badge">Python</span>
+                <span class="tech-badge">Gemini Flash Lite</span>
+                <span class="tech-badge">Function Calling</span>
+                <span class="tech-badge">Native Tool Use</span>
+                <span class="tech-badge">Autonomous Agents</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
