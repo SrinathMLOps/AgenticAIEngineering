@@ -29,36 +29,65 @@ A real-time interactive visualization of Earth's rotation with live solar tracki
 
 ## 📊 Live Output Example
 
-### Current Time Display (UTC)
-```
-16:36:58 (Solar Live Tracker)
-11:06:58 (Karimanagar, India - IST)
-12:06:58 (Coventry, UK - GMT)
-```
+The application displays real-time celestial data with live animations:
 
-### Solar Information Panel
-```
-📍 Karimanagar, India
-   Time: 16:36:57 (IST = 20.2° offset above horizon)
-   ⚠️ Daytime
+### ☀️ Solar Live Tracker Dashboard
+**Real-time UTC Time Display:**
+- **18:13:49** ← UTC (Master Time)
+- **18:13:49** ← Karimanagar, India (IST)
+- **13:43:49** ← Coventry, UK (GMT)
 
-📍 Coventry, UK
-   Time: 12:06:58 (GMT = 50.2° offset above horizon)
-   ⚠️ Daytime
-```
+**Location-Specific Information:**
 
-### Seasonal Event Data
+🇮🇳 **Karimanagar, India**
+- Current Time: 18:13:49 IST
+- Sun Position: 7.2° altitude above horizon
+- Status: ⚠️ **Daytime**
+
+🇬🇧 **Coventry, UK**
+- Current Time: 13:43:49 GMT
+- Sun Position: 60.1° altitude above horizon
+- Status: ⚠️ **Daytime**
+
+**Seasonal Information:**
 ```
 14 June 2026 — Summer Solstice Week
-
-Sun declination: +23.3°N (nearly overhead Karimanagar at noon)
-Country offset: 18h 45m (daylight on Karimanagar; 18h 23m nighttime on Coventry)
-Karimanagar sunrise: 5h 30m earlier than Country day
+├─ Sun Declination: +23.3°N (nearly overhead Karimanagar at noon)
+├─ Daylight Duration: 
+│  └─ Karimanagar: 5h 30m earlier than Country daylight
+│  └─ Coventry: 18h 40m daylight on Karimanagar; 13h 23m nighttime on Coventry every day
+└─ Karimanagar sunrise: 5h 30m earlier than Country day
 ```
+
+**Live Updates:** 🟢 Updates every second with real-time calculations
+
+### 🌍 3D Animation Features
+- Full 4D animated globe with day/night terminator
+- Real-time sun position markers
+- Rotating coordinate grid overlay
+- North Pole top-down orbital view
+- Side view with spinning globe
+- Screenshot capture functionality
 
 ---
 
-## 🎮 How to Use
+## � Live Application Interface
+
+When you visit the live app, you'll see:
+
+**Solar Live Tracker Dashboard:**
+- 🔴 **Real-time UTC clock** at the top center
+- 📍 **Dual location panels** showing time for Karimanagar, India & Coventry, UK
+- ☀️ **Sun position data** with altitude angles above horizon
+- 📅 **Seasonal information** including solstice/equinox data
+- 🌐 **Interactive 3D globe** with animated day/night terminator
+- ⚡ **Live updates** every second with precise calculations
+- ⏱️ **Speed controls** to adjust animation speed (×1 to ×160)
+- 📸 **Screenshot button** to capture the current visualization
+
+---
+
+## �🎮 How to Use
 
 ### Solar Live Tracker
 1. Click **"Open Live Dashboard"** button
